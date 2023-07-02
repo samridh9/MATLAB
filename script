@@ -1,0 +1,28 @@
+% Given x and y values
+x = [20, 25, 30, 35, 40];
+y = [100, 120, 140, 160, 180];
+
+% Perform linear regression of y on x
+coefficients_yx = polyfit(x, y, 1);
+slope_yx = coefficients_yx(1);
+intercept_yx = coefficients_yx(2);
+
+% Perform linear regression of x on y
+coefficients_xy = polyfit(y, x, 1);
+slope_xy = coefficients_xy(1);
+intercept_xy = coefficients_xy(2);
+
+% Plot the data points and regression lines
+plot(x, y, 'o', 'MarkerSize', 8);
+hold on;
+y_fit_yx = slope_yx * x + intercept_yx;
+plot(x, y_fit_yx, 'r', 'Linewidth', 2);
+x_fit_yx = min(x):max(x);
+y_fit_xy = slope_xy * x_fit_yx + intercept_xy;
+plot(x_fit_yx, y_fit_xy, 'g', 'Linewidth', 2);
+
+% Add a title and labels to the axes
+title('Regression Lines');
+xlabel('x');
+ylabel('y');
+hold off;
